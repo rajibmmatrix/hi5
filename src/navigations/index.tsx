@@ -1,20 +1,16 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {ROUTES} from '../constants';
+import {ROUTES} from '~constants';
+import {LoginScreen, SignupScreen, SplashScreen, VerifyScreen} from '~screens';
 import TabNavigation from './TabNavigation';
-import {
-  LoginScreen,
-  SignupScreen,
-  SplashScreen,
-  VerifyScreen,
-} from '../screens';
+import {navigation} from '~utils';
 
 const Stack = createNativeStackNavigator();
 
 export default function Navigations() {
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigation.navigationRef}>
       <Stack.Navigator initialRouteName={ROUTES.Splash}>
         <Stack.Screen
           name={ROUTES.Splash}

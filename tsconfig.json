@@ -5,6 +5,18 @@
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
     /* Completeness */
-    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true,                                /* Skip type checking all .d.ts files. */
+    "baseUrl": ".",
+    "paths": {
+      "~components": ["src/components/index"],
+      "~common": ["src/components/common/index"],
+      "~config/*": ["src/config/*"],
+      "~constants": ["src/constants/index"],
+      "~navigations": ["src/navigations/index"],
+      "~screens": ["src/screens/index"],
+      "~services": ["src/services/index"],
+      "~utils": ["src/utils/index"],
+      "~src/*": ["src/*"]
+    }
   }
 }

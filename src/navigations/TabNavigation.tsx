@@ -2,14 +2,8 @@ import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {COLORS, ROUTES} from '../constants';
-import {
-  FMScreen,
-  HomeScreen,
-  MoreScreen,
-  NewsScreen,
-  TVScreen,
-} from '../screens';
+import {COLORS, ROUTES} from '~constants';
+import {FMScreen, HomeScreen, MoreScreen, NewsScreen, TVScreen} from '~screens';
 
 const Tab = createBottomTabNavigator();
 
