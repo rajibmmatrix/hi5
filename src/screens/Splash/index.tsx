@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
-import {Dimensions, StyleSheet, View} from 'react-native';
+import {Dimensions, Image, StyleSheet, View} from 'react-native';
 import Splash from 'react-native-splash-screen';
-import {SplashImage, ROUTES} from '~constants';
+import {IMAGES, ROUTES} from '~constants';
 
 const {width, height} = Dimensions.get('window');
 
@@ -16,7 +16,7 @@ export default function SplashScreen({navigation}: any) {
 
   return (
     <View style={styles.container}>
-      <SplashImage width={width} height={height} />
+      <Image source={IMAGES.Splash} style={styles.image} />
     </View>
   );
 }
@@ -27,5 +27,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#000000',
+  },
+  image: {
+    width,
+    height,
+    resizeMode: 'cover',
   },
 });

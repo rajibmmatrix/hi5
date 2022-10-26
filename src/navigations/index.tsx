@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {COLORS, ROUTES} from '~constants';
+import {HeaderBack} from '~common';
 import {LoginScreen, SignupScreen, SplashScreen, VerifyScreen} from '~screens';
 import TabNavigation from './TabNavigation';
 import {navigation} from '~utils';
@@ -37,6 +38,7 @@ export default function Navigations() {
               headerTitle: 'Sign Up',
               headerTransparent: true,
               headerTitleStyle: styles.title,
+              headerLeft: HeaderBack,
             }}
           />
           <Stack.Screen
@@ -47,6 +49,7 @@ export default function Navigations() {
               headerTitle: 'Sign Up',
               headerTransparent: true,
               headerTitleStyle: styles.title,
+              headerLeft: HeaderBack,
             }}
           />
         </Stack.Group>

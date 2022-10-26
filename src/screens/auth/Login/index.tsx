@@ -17,6 +17,7 @@ export default function LoginScreen({navigation}: any) {
           label="Mobile Number"
           placeholder="Enter your Mobile"
           Icon={Icons.Mobile}
+          isMobile={true}
           onChangeText={setMobile}
           value={mobile}
         />

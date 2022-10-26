@@ -33,7 +33,7 @@ export default Button;
 const styles = StyleSheet.create({
   container: {
     height: 50,
-    width: 200,
+    width: 180,
     margin: 5,
     alignItems: 'center',
     justifyContent: 'center',

@@ -8,6 +8,10 @@ interface Props {
   onChangeText?: (e: string) => void;
   value?: string;
   Icon: FC;
+  editable?: boolean;
+  isMobile?: boolean;
+  textColor?: string;
+  hideBorder?: boolean;
 }
 
 const AuthInput: FC<Props> = ({
@@ -16,9 +20,15 @@ const AuthInput: FC<Props> = ({
   onChangeText,
   value,
   Icon,
+  editable = true,
+  isMobile = false,
+  textColor = COLORS.Primary_Input,
+  hideBorder = false,
 }) => {
+  const border = hideBorder ? {} : styles.borders;
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, border]}>
       {label && <Text style={styles.title}>{label}</Text>}
       <View style={styles.body}>
         <Icon />
@@ -27,7 +37,9 @@ const AuthInput: FC<Props> = ({
           placeholderTextColor={COLORS.Primary_Placeholder}
           onChangeText={onChangeText}
           value={value}
-          style={styles.input}
+          style={[styles.input, {color: textColor}]}
+          editable={editable}
+          keyboardType={isMobile ? 'number-pad' : 'default'}
         />
       </View>
     </View>
@@ -40,6 +52,8 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     marginBottom: 30,
+  },
+  borders: {
     borderBottomWidth: 1,
     borderColor: COLORS.Primary_Border,
   },
@@ -57,6 +71,5 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 40,
     paddingHorizontal: 12,
-    color: COLORS.Primary_Input,
   },
 });

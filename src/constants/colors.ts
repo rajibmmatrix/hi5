@@ -4,6 +4,7 @@ export const COLORS = {
   Light: '#ffffff',
   Secondary_Text: '#CFCFCF',
   Primary_Link: '#F27405',
+  Secondary_Link: '#666666',
   Primary_Input: '#FFFFFF',
   Primary_Background: '#0D0D0D',
   Primary_Gradient: ['#F29F05', '#F25C05'],
