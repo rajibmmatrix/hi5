@@ -1,7 +1,8 @@
 import React from 'react';
+import {StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {ROUTES} from '~constants';
+import {COLORS, ROUTES} from '~constants';
 import {LoginScreen, SignupScreen, SplashScreen, VerifyScreen} from '~screens';
 import TabNavigation from './TabNavigation';
 import {navigation} from '~utils';
@@ -25,7 +26,7 @@ export default function Navigations() {
               headerTitleAlign: 'center',
               headerTitle: 'Get Started',
               headerTransparent: true,
-              headerTintColor: '#FFFFFF',
+              headerTitleStyle: styles.title,
             }}
           />
           <Stack.Screen
@@ -35,7 +36,7 @@ export default function Navigations() {
               headerTitleAlign: 'center',
               headerTitle: 'Sign Up',
               headerTransparent: true,
-              headerTintColor: '#FFFFFF',
+              headerTitleStyle: styles.title,
             }}
           />
           <Stack.Screen
@@ -45,7 +46,7 @@ export default function Navigations() {
               headerTitleAlign: 'center',
               headerTitle: 'Sign Up',
               headerTransparent: true,
-              headerTintColor: '#FFFFFF',
+              headerTitleStyle: styles.title,
             }}
           />
         </Stack.Group>
@@ -58,3 +59,12 @@ export default function Navigations() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: 18,
+    fontWeight: '500',
+    color: COLORS.Light,
+    fontFamily: 'Poppins',
+  },
+});

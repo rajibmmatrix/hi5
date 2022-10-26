@@ -1,9 +1,13 @@
 import React, {useEffect} from 'react';
-import {Image, StyleSheet} from 'react-native';
-import {ROUTES} from '../../constants';
+import {Dimensions, StyleSheet, View} from 'react-native';
+import Splash from 'react-native-splash-screen';
+import {SplashImage, ROUTES} from '~constants';
+
+const {width, height} = Dimensions.get('window');
 
 export default function SplashScreen({navigation}: any) {
   useEffect(() => {
+    Splash.hide();
     setTimeout(() => {
       navigation.replace(ROUTES.Login);
     }, 2000);
@@ -11,17 +15,17 @@ export default function SplashScreen({navigation}: any) {
   }, [navigation]);
 
   return (
-    <Image
-      source={require('../../assets/images/splash.png')}
-      style={styles.container}
-    />
+    <View style={styles.container}>
+      <SplashImage width={width} height={height} />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'cover',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#000000',
   },
 });

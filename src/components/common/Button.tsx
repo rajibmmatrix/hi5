@@ -1,19 +1,28 @@
 import React, {FC} from 'react';
-import {StyleSheet, Text, TouchableOpacity} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  TextStyle,
+  TouchableOpacity,
+  ViewStyle,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import {COLORS} from '~constants';
 
 interface Props {
   title: string;
   onPress: () => void;
+  style?: ViewStyle;
+  titleStyle?: TextStyle;
 }
 
-const Button: FC<Props> = ({title, onPress}) => {
+const Button: FC<Props> = ({title, onPress, style, titleStyle}) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <LinearGradient
-        colors={['#f29c05', '#f38206', '#f25e05']}
-        style={styles.container}>
-        <Text style={styles.title}>{title}</Text>
+        colors={COLORS.Primary_Gradient}
+        style={[styles.container, style]}>
+        <Text style={[styles.title, titleStyle]}>{title}</Text>
       </LinearGradient>
     </TouchableOpacity>
   );
@@ -31,10 +40,11 @@ const styles = StyleSheet.create({
     borderRadius: 50,
   },
   title: {
-    fontSize: 18,
-    fontWeight: 'bold',
+    fontSize: 16,
+    fontWeight: '500',
     textAlign: 'center',
-    color: '#170b00',
+    color: COLORS.Dark,
     backgroundColor: 'transparent',
+    textTransform: 'uppercase',
   },
 });
