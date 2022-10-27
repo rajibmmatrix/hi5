@@ -1,33 +1,50 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import OtpInputs from 'react-native-otp-inputs';
-import {Button} from '../../../components';
-import {COLORS, ROUTES} from '../../../constants';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {AuthInput, AuthLogo, Button, InputOTP} from '~components';
+import {COLORS, Icons, ROUTES} from '~constants';
 
 export default function VerifyScreen({navigation}: any) {
+  const mobile = '8334046808';
+  let otp = '';
+
   const handelVerify = () => {
-    navigation.navigate(ROUTES.Tab);
-    /* navigation.reset({
+    console.log(otp);
+    navigation.reset({
       index: 0,
       routes: [{name: ROUTES.Tab}],
-    }); */
+    });
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Verify Screen</Text>
-      <View style={styles.inputContainer}>
-        <OtpInputs
-          autofillFromClipboard
-          numberOfInputs={6}
-          handleChange={code => console.log(code)}
-          style={styles.otpContainer}
-          inputContainerStyles={styles.otpBox}
-          inputStyles={styles.otpText}
-          focusStyles={styles.oTpFocus}
-        />
-      </View>
-      <Button onPress={handelVerify} title="VERIFY" />
+      <AuthLogo />
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Text style={styles.title}>
+          OTP has been sent to you on your{'\n'}mobile number.
+        </Text>
+        <View style={styles.body}>
+          <AuthInput
+            Icon={Icons.Mobile}
+            value={mobile}
+            editable={false}
+            textColor={COLORS.Primary_Link}
+            hideBorder={true}
+            containerStyle={styles.emailInput}
+          />
+          <InputOTP
+            onChangeText={e => {
+              otp = e;
+            }}
+          />
+          <Text style={styles.timer}>Resend OTP after 60 sec</Text>
+          <Button onPress={handelVerify} title="verify" />
+        </View>
+        <View style={styles.footer}>
+          <Icons.Rectangle width={20} />
+          <Text style={styles.footerTitle}>I agree to the</Text>
+          <Text style={styles.footerLink}>Terms & Conditions</Text>
+        </View>
+      </ScrollView>
     </View>
   );
 }
@@ -35,41 +52,47 @@ export default function VerifyScreen({navigation}: any) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.appBackground,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: COLORS.Primary_Background,
   },
   title: {
     fontSize: 14,
-    fontWeight: 'bold',
-    color: '#ffffff',
+    fontWeight: '400',
+    color: COLORS.Secondary_Text,
+    alignSelf: 'center',
+    marginTop: 110,
+    marginBottom: 45,
+  },
+  body: {
+    paddingHorizontal: 45,
+    alignItems: 'center',
+  },
+  emailInput: {
+    marginBottom: 25,
+  },
+  timer: {
+    fontSize: 12,
+    fontWeight: '400',
+    color: COLORS.Other_Text,
     textAlign: 'center',
+    marginBottom: 35,
+  },
+  footer: {
+    marginTop: 40,
     marginBottom: 20,
-  },
-  inputContainer: {
-    width: '100%',
-  },
-  otpContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    margin: 15,
+    justifyContent: 'center',
   },
-  otpBox: {
-    height: 50,
-    width: '12%',
-    borderRadius: 5,
-    borderWidth: 1.5,
-    borderColor: COLORS.activeTab,
+  footerTitle: {
+    fontSize: 12,
+    fontWeight: '400',
+    color: COLORS.Secondary_Link,
+    marginLeft: 10,
   },
-  otpText: {
-    fontSize: 20,
-    fontWeight: '700',
-    color: '#000',
-    textAlign: 'center',
-  },
-  oTpFocus: {
-    backgroundColor: '#f0f0f0',
-    borderColor: COLORS.inActiveTab,
+  footerLink: {
+    fontSize: 12,
+    fontWeight: '400',
+    color: COLORS.Primary_Link,
+    marginLeft: 5,
   },
 });

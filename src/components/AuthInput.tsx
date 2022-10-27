@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import {StyleSheet, Text, TextInput, View} from 'react-native';
+import {StyleSheet, Text, TextInput, View, ViewStyle} from 'react-native';
 import {COLORS} from '~constants';
 
 interface Props {
@@ -12,6 +12,7 @@ interface Props {
   isMobile?: boolean;
   textColor?: string;
   hideBorder?: boolean;
+  containerStyle?: ViewStyle;
 }
 
 const AuthInput: FC<Props> = ({
@@ -24,11 +25,12 @@ const AuthInput: FC<Props> = ({
   isMobile = false,
   textColor = COLORS.Primary_Input,
   hideBorder = false,
+  containerStyle,
 }) => {
   const border = hideBorder ? {} : styles.borders;
 
   return (
-    <View style={[styles.container, border]}>
+    <View style={[styles.container, border, containerStyle]}>
       {label && <Text style={styles.title}>{label}</Text>}
       <View style={styles.body}>
         <Icon />
