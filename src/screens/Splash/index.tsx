@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {Dimensions, Image, StyleSheet, View} from 'react-native';
 import Splash from 'react-native-splash-screen';
-import {IMAGES, ROUTES} from '~constants';
+import {COLORS, IMAGES, ROUTES} from '~constants';
 
 const {width, height} = Dimensions.get('window');
 
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#000000',
+    backgroundColor: COLORS.Dark,
   },
   image: {
     width,

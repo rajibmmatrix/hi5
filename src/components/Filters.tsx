@@ -1,15 +1,32 @@
-import React from 'react';
+import React, {FC, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {DropDown} from './common';
 
-const Filters = () => {
+const DATA = [
+  {label: 'Bengali', value: 'bengali', id: 1},
+  {label: 'Hindi', value: 'hindi', id: 2},
+];
+
+const Filters: FC = () => {
+  const [value, setValue] = useState<string>('');
+
   return (
     <View style={styles.container}>
-      <View>
-        <DropDown />
+      <View style={styles.item}>
+        <DropDown
+          data={DATA}
+          title="Category"
+          onChange={setValue}
+          value={value}
+        />
       </View>
-      <View>
-        <DropDown />
+      <View style={styles.item}>
+        <DropDown
+          data={DATA}
+          title="Language"
+          onChange={setValue}
+          value={value}
+        />
       </View>
     </View>
   );
@@ -23,5 +40,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
+    paddingHorizontal: 15,
+  },
+  item: {
+    flex: 1,
+    height: 50,
+    marginHorizontal: 5,
   },
 });

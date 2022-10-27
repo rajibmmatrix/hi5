@@ -1,8 +1,6 @@
 import React from 'react';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Entypo from 'react-native-vector-icons/Entypo';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {COLORS, ROUTES} from '~constants';
+import {COLORS, Icons, ROUTES} from '~constants';
 import {FMScreen, HomeScreen, MoreScreen, NewsScreen, TVScreen} from '~screens';
 
 const Tab = createBottomTabNavigator();
@@ -12,13 +10,13 @@ export default function TabNavigation() {
     <Tab.Navigator
       screenOptions={() => ({
         headerShown: false,
-        tabBarActiveTintColor: COLORS.activeTab,
-        tabBarInactiveTintColor: COLORS.inActiveTab,
+        tabBarActiveTintColor: COLORS.Primary_Link,
+        tabBarInactiveTintColor: COLORS.Gray,
         tabBarStyle: {
           height: 50,
           elevation: 0,
           borderTopWidth: 0,
-          backgroundColor: COLORS.tabBar,
+          backgroundColor: COLORS.TabBar,
         },
       })}>
       <Tab.Screen
@@ -26,9 +24,8 @@ export default function TabNavigation() {
         component={HomeScreen}
         options={{
           title: 'Home',
-          tabBarIcon: ({color, size}) => (
-            <Ionicons name="ios-home" size={size} color={color} />
-          ),
+          tabBarIcon: ({focused}) =>
+            focused ? <Icons.HomeActive /> : <Icons.Home />,
         }}
       />
       <Tab.Screen
@@ -36,9 +33,8 @@ export default function TabNavigation() {
         component={NewsScreen}
         options={{
           title: 'News',
-          tabBarIcon: ({color, size}) => (
-            <Ionicons name="newspaper" size={size} color={color} />
-          ),
+          tabBarIcon: ({focused}) =>
+            focused ? <Icons.NewsActive /> : <Icons.News />,
         }}
       />
       <Tab.Screen
@@ -46,9 +42,8 @@ export default function TabNavigation() {
         component={TVScreen}
         options={{
           title: 'TV',
-          tabBarIcon: ({color, size}) => (
-            <Ionicons name="ios-tv" size={size} color={color} />
-          ),
+          tabBarIcon: ({focused}) =>
+            focused ? <Icons.TVActive /> : <Icons.TV />,
         }}
       />
       <Tab.Screen
@@ -56,9 +51,8 @@ export default function TabNavigation() {
         component={FMScreen}
         options={{
           title: 'FM',
-          tabBarIcon: ({color, size}) => (
-            <Entypo name="radio" size={size} color={color} />
-          ),
+          tabBarIcon: ({focused}) =>
+            focused ? <Icons.FMActive /> : <Icons.FM />,
         }}
       />
       <Tab.Screen
@@ -66,9 +60,8 @@ export default function TabNavigation() {
         component={MoreScreen}
         options={{
           title: 'More',
-          tabBarIcon: ({color, size}) => (
-            <Ionicons name="ios-grid" size={size} color={color} />
-          ),
+          tabBarIcon: ({focused}) =>
+            focused ? <Icons.More /> : <Icons.More />,
         }}
       />
     </Tab.Navigator>

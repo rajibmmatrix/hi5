@@ -12,9 +12,8 @@ export const COLORS = {
   Primary_Placeholder: '#999999',
   Primary_Border: '#333333',
   Other_Text: '#DDDDDD',
-
-  activeTab: 'rgba(199,96,6,255)',
-  inActiveTab: 'rgba(36,39,43,255)',
-  tabBar: 'rgba(12,12,12,255)',
-  appBackground: 'rgba(4,4,4,255)',
+  TabBar: '#0C0C0C',
+  Primary_Card: '#F1F1F1',
+  Secondary_Card: ['#DD1B23', '#7D1315'],
+  Primary_DropDown: '#292D32',
 };
