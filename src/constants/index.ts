@@ -67,8 +67,18 @@ const LiveNews = [
   },
 ];
 
+const Banners = [
+  IMAGES.Banner,
+  IMAGES.Banner,
+  IMAGES.Banner,
+  IMAGES.Banner,
+  IMAGES.Banner,
+  IMAGES.Banner,
+];
+
 export const DATA = {
   NewsData,
   LiveNews,
   FMData,
+  Banners,
 };

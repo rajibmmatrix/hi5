@@ -3,6 +3,7 @@ export const IMAGES = {
   Splash: require('../assets/images/Splash.png'),
   UttarerNews: require('../assets/images/uttarer_saradin_news.png'),
   HighNews: require('../assets/images/high_news.png'),
+  Banner: require('../assets/images/banner.png'),
   //TV's
   Abp: require('../assets/images/tvs/abp.png'),
   Akash8: require('../assets/images/tvs/akash8.png'),
