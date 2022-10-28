@@ -13,7 +13,6 @@ export default function TabNavigation() {
         tabBarActiveTintColor: COLORS.Primary_Link,
         tabBarInactiveTintColor: COLORS.Gray,
         tabBarStyle: {
-          height: 50,
           elevation: 0,
           borderTopWidth: 0,
           backgroundColor: COLORS.TabBar,
