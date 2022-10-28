@@ -1,5 +1,5 @@
-import React from 'react';
-import {FlatList, Image, StyleSheet, View} from 'react-native';
+import React, {Fragment} from 'react';
+import {FlatList, Image, ScrollView, StyleSheet, View} from 'react-native';
 import {Header, NewsLive, NewsPaper, TitleAndMore} from '~components';
 import {COLORS, DATA} from '~constants';
 
@@ -7,13 +7,14 @@ export default function NewsScreen() {
   return (
     <View style={styles.container}>
       <Header title="News" />
-      <View style={styles.content}>
+      <ScrollView
+        nestedScrollEnabled={true}
+        showsVerticalScrollIndicator={false}
+        style={styles.content}>
         <View style={styles.body}>
-          <FlatList
-            data={DATA.NewsData}
-            showsVerticalScrollIndicator={false}
-            renderItem={({item}) =>
-              item.isNewsPaper ? (
+          {DATA.NewsData.map((item, index) => (
+            <Fragment key={index.toString()}>
+              {item.isNewsPaper ? (
                 <NewsPaper
                   title={item.title}
                   description={item.description}
@@ -21,16 +22,16 @@ export default function NewsScreen() {
                 />
               ) : (
                 <NewsLive title={item.title} onPress={() => {}} />
-              )
-            }
-            keyExtractor={(_, index) => index.toString()}
-          />
+              )}
+            </Fragment>
+          ))}
         </View>
         <TitleAndMore title="Live News Channels" onPress={() => {}} />
         <View style={styles.footer}>
           <FlatList
             horizontal={true}
             data={DATA.LiveNews}
+            bounces={false}
             showsHorizontalScrollIndicator={false}
             renderItem={({item}) => (
               <View style={styles.item}>
@@ -40,7 +41,7 @@ export default function NewsScreen() {
             keyExtractor={(_, index) => index.toString()}
           />
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 }
