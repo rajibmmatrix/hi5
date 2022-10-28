@@ -68,12 +68,13 @@ const LiveNews = [
 ];
 
 const Banners = [
-  IMAGES.Banner,
-  IMAGES.Banner,
-  IMAGES.Banner,
-  IMAGES.Banner,
-  IMAGES.Banner,
-  IMAGES.Banner,
+  {img: IMAGES.Banner},
+  {img: IMAGES.Banner},
+  {img: IMAGES.Banner},
+  {img: IMAGES.Banner},
+  {img: IMAGES.Banner},
+  {img: IMAGES.Banner},
+  {img: IMAGES.Banner},
 ];
 
 export const DATA = {
