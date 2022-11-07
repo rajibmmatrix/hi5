@@ -1,16 +1,21 @@
 export const ROUTES = {
-  Splash: 'splash',
+  Splash: 'Splash',
 
   //Auth routes
-  Login: 'login',
-  Signup: 'signup',
-  Verify: 'verify',
+  Login: 'Login',
+  Signup: 'Signup',
+  Verify: 'Verify',
 
   //App routes
-  Tab: 'tab',
-  Home: 'home',
-  News: 'news',
-  TV: 'tv',
-  FM: 'fm',
-  More: 'more',
+  Tab: 'Tab',
+  //Tab Screen Start
+  Home: 'Home',
+  News: 'News',
+  TV: 'TV',
+  FM: 'FM',
+  More: 'More',
+  //Tab Screen End
+
+  Profile: 'Profile',
+  EditProfile: 'EditProfile',
 };

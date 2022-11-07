@@ -1,14 +1,53 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {Header} from '../../components';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {TabScreenProps} from 'types';
+import {MoreItem} from '~components';
+import {COLORS, Icons} from '~constants';
 
-export default function MoreScreen() {
+export default function MoreScreen({navigation}: TabScreenProps<'More'>) {
   return (
     <View style={styles.container}>
-      <Header />
-      <View style={styles.content}>
-        <Text style={styles.title}>More Screen</Text>
+      <View style={styles.header}>
+        <View style={styles.leftSide}>
+          <Icons.ProfilePic width={29} height={29} />
+          <Text style={styles.title}>Milan Chakraborty</Text>
+        </View>
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+          <Icons.MoreArrowRight width={18} height={18} />
+        </TouchableOpacity>
       </View>
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.content}>
+        <MoreItem title="Buy plan" Icon={Icons.BuyPlan} onPress={() => {}} />
+        <MoreItem
+          title="My subscription"
+          Icon={Icons.MySubscription}
+          onPress={() => {}}
+        />
+        <MoreItem
+          title="My transaction"
+          Icon={Icons.BuyPlan}
+          onPress={() => {}}
+        />
+        <MoreItem title="Favorites" Icon={Icons.Favorite} onPress={() => {}} />
+        <MoreItem title="Settings" Icon={Icons.BuyPlan} onPress={() => {}} />
+        <MoreItem
+          title="Support & feedback"
+          Icon={Icons.SupportFeedback}
+          onPress={() => {}}
+        />
+        <MoreItem
+          title="Tell a friend about this app"
+          Icon={Icons.MoreUser}
+          onPress={() => {}}
+        />
+        <MoreItem title="Logout" Icon={Icons.Logout} onPress={() => {}} />
+      </ScrollView>
     </View>
   );
 }
@@ -16,17 +55,31 @@ export default function MoreScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000000',
+    backgroundColor: COLORS.Primary_Background,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    padding: 10,
+    paddingHorizontal: 20,
+    backgroundColor: COLORS.Secondary_Background,
+  },
+  leftSide: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  title: {
+    fontSize: 11,
+    fontWeight: '400',
+    color: COLORS.Light,
+    textAlign: 'center',
+    marginLeft: 10,
   },
   content: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  title: {
-    fontSize: 14,
-    fontWeight: 'bold',
-    color: '#ffffff',
-    textAlign: 'center',
+    paddingLeft: 26,
+    marginVertical: 20,
+    paddingHorizontal: 22,
   },
 });

@@ -1,13 +1,15 @@
 import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {COLORS, Icons, ROUTES} from '~constants';
+import {COLORS, Icons} from '~constants';
 import {FMScreen, HomeScreen, MoreScreen, NewsScreen, TVScreen} from '~screens';
+import {TabParamList} from 'types';
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<TabParamList>();
 
 export default function TabNavigation() {
   return (
     <Tab.Navigator
+      initialRouteName="Home"
       screenOptions={() => ({
         headerShown: false,
         tabBarActiveTintColor: COLORS.Primary_Link,
@@ -19,7 +21,7 @@ export default function TabNavigation() {
         },
       })}>
       <Tab.Screen
-        name={ROUTES.Home}
+        name="Home"
         component={HomeScreen}
         options={{
           title: 'Home',
@@ -28,7 +30,7 @@ export default function TabNavigation() {
         }}
       />
       <Tab.Screen
-        name={ROUTES.News}
+        name="News"
         component={NewsScreen}
         options={{
           title: 'News',
@@ -37,7 +39,7 @@ export default function TabNavigation() {
         }}
       />
       <Tab.Screen
-        name={ROUTES.TV}
+        name="TV"
         component={TVScreen}
         options={{
           title: 'TV',
@@ -46,7 +48,7 @@ export default function TabNavigation() {
         }}
       />
       <Tab.Screen
-        name={ROUTES.FM}
+        name="FM"
         component={FMScreen}
         options={{
           title: 'FM',
@@ -55,12 +57,12 @@ export default function TabNavigation() {
         }}
       />
       <Tab.Screen
-        name={ROUTES.More}
+        name="More"
         component={MoreScreen}
         options={{
           title: 'More',
           tabBarIcon: ({focused}) =>
-            focused ? <Icons.More /> : <Icons.More />,
+            focused ? <Icons.MoreActive /> : <Icons.More />,
         }}
       />
     </Tab.Navigator>

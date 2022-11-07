@@ -9,3 +9,4 @@ export {default as TitleAndMore} from './TitleAndMore';
 export {default as Banner} from './Banner';
 export {default as HomeTopNews} from './HomeTopNews';
 export {default as PopularShow} from './PopularShow';
+export {default as MoreItem} from './MoreItem';

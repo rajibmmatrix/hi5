@@ -9,6 +9,15 @@ export {default as Rectangle} from '../assets/icons/rectangle.svg';
 export {default as UserPic} from '../assets/icons/user_pic.svg';
 export {default as Search} from '../assets/icons/search.svg';
 export {default as Ellipse} from '../assets/icons/ellipse.svg';
+//More Screen
+export {default as BuyPlan} from '../assets/icons/buy_plan.svg';
+export {default as ProfilePic} from '../assets/icons/profile_pic.svg';
+export {default as MoreArrowRight} from '../assets/icons/more_arrow-left.svg';
+export {default as MySubscription} from '../assets/icons/my_subscription.svg';
+export {default as Favorite} from '../assets/icons/favorite.svg';
+export {default as Logout} from '../assets/icons/logout.svg';
+export {default as MoreUser} from '../assets/icons/more_user.svg';
+export {default as SupportFeedback} from '../assets/icons/support_feedback.svg';
 
 //Tab Icons
 export {default as Home} from '../assets/icons/home.svg';
@@ -20,3 +29,4 @@ export {default as HomeActive} from '../assets/icons/home_active.svg';
 export {default as NewsActive} from '../assets/icons/news_active.svg';
 export {default as TVActive} from '../assets/icons/tv_active.svg';
 export {default as FMActive} from '../assets/icons/radio_active.svg';
+export {default as MoreActive} from '../assets/icons/more_active.svg';

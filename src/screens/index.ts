@@ -11,3 +11,5 @@ export {default as NewsScreen} from './News';
 export {default as TVScreen} from './TV';
 export {default as FMScreen} from './FM';
 export {default as MoreScreen} from './More';
+export {default as ProfileScreen} from './Profile';
+export {default as EditProfileScreen} from './EditProfile';

@@ -2,27 +2,35 @@ import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {COLORS, ROUTES} from '~constants';
+import {COLORS} from '~constants';
 import {HeaderBack} from '~common';
-import {LoginScreen, SignupScreen, SplashScreen, VerifyScreen} from '~screens';
+import {
+  EditProfileScreen,
+  LoginScreen,
+  ProfileScreen,
+  SignupScreen,
+  SplashScreen,
+  VerifyScreen,
+} from '~screens';
+import {StackParamList} from 'types';
 import TabNavigation from './TabNavigation';
 import {navigation} from '~utils';
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<StackParamList>();
 
 export default function Navigations() {
   return (
     <SafeAreaView style={styles.container}>
       <NavigationContainer ref={navigation.navigationRef}>
-        <Stack.Navigator initialRouteName={ROUTES.Splash}>
+        <Stack.Navigator initialRouteName="Splash">
           <Stack.Screen
-            name={ROUTES.Splash}
+            name="Splash"
             component={SplashScreen}
             options={{headerShown: false}}
           />
           <Stack.Group>
             <Stack.Screen
-              name={ROUTES.Login}
+              name="Login"
               component={LoginScreen}
               options={{
                 headerTitleAlign: 'center',
@@ -32,7 +40,7 @@ export default function Navigations() {
               }}
             />
             <Stack.Screen
-              name={ROUTES.Signup}
+              name="Signup"
               component={SignupScreen}
               options={{
                 headerTitleAlign: 'center',
@@ -43,7 +51,7 @@ export default function Navigations() {
               }}
             />
             <Stack.Screen
-              name={ROUTES.Verify}
+              name="Verify"
               component={VerifyScreen}
               options={{
                 headerTitleAlign: 'center',
@@ -55,8 +63,18 @@ export default function Navigations() {
             />
           </Stack.Group>
           <Stack.Screen
-            name={ROUTES.Tab}
+            name="Tab"
             component={TabNavigation}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Profile"
+            component={ProfileScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="EditProfile"
+            component={EditProfileScreen}
             options={{headerShown: false}}
           />
         </Stack.Navigator>
