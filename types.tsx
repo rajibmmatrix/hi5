@@ -37,7 +37,7 @@ export type TabParamList = {
 };
 
 //For Stack Screens
-export type RootStackScreenProps<Screen extends keyof StackParamList> =
+export type StackScreenProps<Screen extends keyof StackParamList> =
   NativeStackScreenProps<StackParamList, Screen>;
 
 //For Tab Screens

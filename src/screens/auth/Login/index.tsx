@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {StackScreenProps} from 'types';
 import {AuthInput, AuthLogo, Button} from '~components';
-import {COLORS, Icons, ROUTES} from '~constants';
+import {COLORS, Icons} from '~constants';
 
-export default function LoginScreen({navigation}: any) {
+export default function LoginScreen({navigation}: StackScreenProps<'Login'>) {
   const [mobile, setMobile] = useState('');
 
   return (
@@ -23,7 +24,7 @@ export default function LoginScreen({navigation}: any) {
             value={mobile}
           />
           <Button
-            onPress={() => navigation.navigate(ROUTES.Signup)}
+            onPress={() => navigation.navigate('Signup')}
             title="submit"
           />
         </View>

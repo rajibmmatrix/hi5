@@ -1,15 +1,16 @@
 import React, {useEffect} from 'react';
 import {Dimensions, Image, StyleSheet, View} from 'react-native';
 import Splash from 'react-native-splash-screen';
-import {COLORS, IMAGES, ROUTES} from '~constants';
+import {StackScreenProps} from 'types';
+import {COLORS, IMAGES} from '~constants';
 
 const {width, height} = Dimensions.get('window');
 
-export default function SplashScreen({navigation}: any) {
+export default function SplashScreen({navigation}: StackScreenProps<'Splash'>) {
   useEffect(() => {
     Splash.hide();
     setTimeout(() => {
-      navigation.replace(ROUTES.Login);
+      navigation.replace('Login');
     }, 2000);
     return () => {};
   }, [navigation]);
