@@ -1,13 +1,19 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
 import {COLORS} from '~constants';
 
-interface Props {
-  connected?: boolean;
-}
+const NetError: FC = () => {
+  const [isConnected, setIsConnected] = useState<boolean>(true);
 
-const NetError: FC<Props> = ({connected}) => {
-  if (connected) return null;
+  useEffect(() => {
+    const unsubscribe = NetInfo.addEventListener(state => {
+      setIsConnected(!!state.isConnected);
+    });
+    return () => unsubscribe();
+  }, []);
+
+  if (isConnected) return null;
 
   return (
     <View style={styles.container}>

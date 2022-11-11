@@ -9,6 +9,8 @@
     "baseUrl": ".",
     "typeRoots": ["node_modules/@types", "src/types"],
     "paths": {
+      "~app": ["src/app/index"],
+      "~assets/*": ["src/assets/*"],
       "~components": ["src/components/index"],
       "~common": ["src/components/common/index"],
       "~config/*": ["src/config/*"],

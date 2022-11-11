@@ -1,47 +1,41 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
-import {login} from './authAction';
+import {login} from '../auth/authAction';
 
-export interface AuthState {
-  isLoggedin: boolean;
+export interface LoadingState {
   isLoading: boolean;
-  user: any;
   error: string | null;
 }
 
-const initialState: AuthState = {
-  isLoggedin: false,
+const initialState: LoadingState = {
   isLoading: false,
-  user: null,
   error: null,
 };
 
-export const authSlice = createSlice({
-  name: 'auth',
+export const loadingSlice = createSlice({
+  name: 'loading',
   initialState,
   reducers: {
-    startAuthLoading: state => {
+    startLoading: state => {
       state.isLoading = true;
     },
-    stopAuthLoading: state => {
+    stopLoading: state => {
       state.isLoading = false;
     },
-    authLoading: (state, action: PayloadAction<boolean>) => {
+    loading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
     },
   },
   extraReducers: builder => {
-    builder.addCase(login.pending, (state: AuthState) => {
+    builder.addCase(login.pending, (state: LoadingState) => {
       state.isLoading = true;
-      state.user = null;
       state.error = null;
     });
-    builder.addCase(login.fulfilled, (state: AuthState) => {
+    builder.addCase(login.fulfilled, (state: LoadingState) => {
       state.isLoading = false;
-      state.user = null;
       state.error = null;
     });
-    builder.addCase(login.rejected, (state, action: any) => {
+    builder.addCase(login.rejected, (state: LoadingState, action: any) => {
       state.isLoading = false;
       if (action.payload) {
         state.error = action.payload?.errorMessage;
@@ -52,7 +46,6 @@ export const authSlice = createSlice({
   },
 });
 
-export const {startAuthLoading, stopAuthLoading, authLoading} =
-  authSlice.actions;
+export const {startLoading, stopLoading, loading} = loadingSlice.actions;
 
-export default authSlice.reducer;
+export default loadingSlice.reducer;

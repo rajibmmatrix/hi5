@@ -1,18 +1,39 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {StackScreenProps} from 'types';
 import {AuthInput, AuthLogo, Button, InputOTP} from '~components';
-import {COLORS, Icons, ROUTES} from '~constants';
+import {COLORS, Icons} from '~constants';
+import {useActions, verify} from '~app';
 
-export default function VerifyScreen({navigation}: any) {
-  const mobile = '8334046808';
+export default function VerifyScreen({
+  route,
+  navigation,
+}: StackScreenProps<'Verify'>) {
+  const dispatch = useActions();
+  const {mobile} = route.params!;
   let otp = '';
+
+  console.log({mobile});
 
   const handelVerify = () => {
     console.log(otp);
-    navigation.reset({
-      index: 0,
-      routes: [{name: ROUTES.Tab}],
-    });
+    dispatch(
+      verify({
+        otp: otp,
+        phone_no: mobile,
+        device_id: '',
+        device_model: '',
+        device_type: '',
+      }),
+    )
+      .unwrap()
+      .then(_ => {
+        navigation.reset({
+          index: 0,
+          routes: [{name: 'Tab'}],
+        });
+      })
+      .catch(err => console.log('error: ', err));
   };
 
   return (

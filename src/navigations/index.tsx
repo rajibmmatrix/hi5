@@ -40,8 +40,8 @@ export default function Navigations() {
               }}
             />
             <Stack.Screen
-              name="Signup"
-              component={SignupScreen}
+              name="Verify"
+              component={VerifyScreen}
               options={{
                 headerTitleAlign: 'center',
                 headerTitle: 'Sign Up',
@@ -51,8 +51,8 @@ export default function Navigations() {
               }}
             />
             <Stack.Screen
-              name="Verify"
-              component={VerifyScreen}
+              name="Signup"
+              component={SignupScreen}
               options={{
                 headerTitleAlign: 'center',
                 headerTitle: 'Sign Up',

@@ -17,7 +17,7 @@ export type StackParamList = {
   //Auth Screens
   Login: undefined;
   Signup: undefined;
-  Verify: undefined;
+  Verify: {mobile: string} | undefined;
 
   //App Screens
   Tab: NavigatorScreenParams<TabParamList> | undefined;
@@ -46,3 +46,20 @@ export type TabScreenProps<Screen extends keyof TabParamList> =
     BottomTabScreenProps<TabParamList, Screen>,
     NativeStackScreenProps<StackParamList>
   >;
+
+export interface ILogin {
+  phone_no: string;
+}
+
+export interface IVerify {
+  phone_no: string;
+  otp: string;
+  device_id?: string;
+  device_model?: string;
+  device_type?: string;
+}
+
+export interface ISignup {
+  full_name: string;
+  email: string;
+}

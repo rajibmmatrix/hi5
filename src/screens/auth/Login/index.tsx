@@ -1,14 +1,23 @@
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {StackScreenProps} from 'types';
-import {AuthInput, AuthLogo, Button} from '~components';
+import {AuthInput, AuthLogo, Button, Container} from '~components';
 import {COLORS, Icons} from '~constants';
+import {login, RootState, useActions, useSelector} from '~app';
 
-export default function LoginScreen({navigation}: StackScreenProps<'Login'>) {
+export default function LoginScreen() {
+  const dispatch = useActions();
+  const {isLoading} = useSelector((state: RootState) => state.auth);
   const [mobile, setMobile] = useState('');
 
+  const handleSubmit = () => {
+    if (mobile.trim().length !== 10) {
+      return;
+    }
+    dispatch(login({phone_no: mobile}));
+  };
+
   return (
-    <View style={styles.container}>
+    <Container showSpinner={isLoading}>
       <AuthLogo />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.title}>
@@ -23,10 +32,7 @@ export default function LoginScreen({navigation}: StackScreenProps<'Login'>) {
             onChangeText={setMobile}
             value={mobile}
           />
-          <Button
-            onPress={() => navigation.navigate('Signup')}
-            title="submit"
-          />
+          <Button onPress={handleSubmit} title="submit" />
         </View>
         <View style={styles.footer}>
           <Text style={styles.footerTitle}>App</Text>
@@ -57,15 +63,11 @@ export default function LoginScreen({navigation}: StackScreenProps<'Login'>) {
           <Text style={styles.footerLink}>Privacy Policy</Text>
         </View>
       </ScrollView>
-    </View>
+    </Container>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.Primary_Background,
-  },
   title: {
     fontSize: 14,
     fontWeight: '400',
