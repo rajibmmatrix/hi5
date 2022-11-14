@@ -1,15 +1,37 @@
 import React, {useState} from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
-import {AuthInput, AuthLogo, Button} from '~components';
-import {COLORS, Icons, ROUTES} from '~constants';
+import {StackScreenProps} from 'types';
+import {RootState, signup, useActions, useSelector} from '~app';
+import {AuthInput, AuthLogo, Button, Container} from '~components';
+import {COLORS, Icons} from '~constants';
 
-export default function SignupScreen({navigation}: any) {
-  const mobile = '8334046808';
+export default function SignupScreen({
+  route,
+  navigation,
+}: StackScreenProps<'Signup'>) {
+  const dispatch = useActions();
+  const {isLoading} = useSelector((state: RootState) => state.loading);
+  const {mobile} = route.params!;
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
 
+  const handelSubmit = () => {
+    if (name.trim().length === 0 || email.trim().length === 0) {
+      return;
+    }
+    dispatch(signup({full_name: name, email}))
+      .unwrap()
+      .then(_ => {
+        navigation.reset({
+          index: 0,
+          routes: [{name: 'Tab'}],
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
   return (
-    <View style={styles.container}>
+    <Container showSpinner={isLoading}>
       <AuthLogo />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.title}>
@@ -35,10 +57,7 @@ export default function SignupScreen({navigation}: any) {
             onChangeText={setEmail}
             value={email}
           />
-          <Button
-            onPress={() => navigation.navigate(ROUTES.Verify)}
-            title="sign up"
-          />
+          <Button onPress={handelSubmit} title="sign up" />
         </View>
         <View style={styles.footer}>
           <Icons.Rectangle width={20} />
@@ -46,7 +65,7 @@ export default function SignupScreen({navigation}: any) {
           <Text style={styles.footerLink}>Terms & Conditions</Text>
         </View>
       </ScrollView>
-    </View>
+    </Container>
   );
 }
 

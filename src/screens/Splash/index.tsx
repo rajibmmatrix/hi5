@@ -2,18 +2,28 @@ import React, {useEffect} from 'react';
 import {Dimensions, Image, StyleSheet, View} from 'react-native';
 import Splash from 'react-native-splash-screen';
 import {StackScreenProps} from 'types';
+import {checkLogin, useActions} from '~app';
 import {COLORS, IMAGES} from '~constants';
 
 const {width, height} = Dimensions.get('window');
 
 export default function SplashScreen({navigation}: StackScreenProps<'Splash'>) {
+  const dispatch = useActions();
+
   useEffect(() => {
-    Splash.hide();
-    setTimeout(() => {
-      navigation.replace('Login');
-    }, 2000);
+    dispatch(checkLogin())
+      .unwrap()
+      .then(data => {
+        if (!data.isLogin) {
+          navigation.replace('Login');
+        } else {
+          navigation.replace('Tab');
+        }
+      })
+      .catch(() => navigation.replace('Logout'))
+      .finally(() => Splash.hide());
     return () => {};
-  }, [navigation]);
+  }, [navigation, dispatch]);
 
   return (
     <View style={styles.container}>

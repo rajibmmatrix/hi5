@@ -16,7 +16,8 @@ export type StackParamList = {
   Splash: undefined;
   //Auth Screens
   Login: undefined;
-  Signup: undefined;
+  Logout: undefined;
+  Signup: {mobile: string} | undefined;
   Verify: {mobile: string} | undefined;
 
   //App Screens

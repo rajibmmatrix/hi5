@@ -22,3 +22,13 @@ export const setToken = async (value: string): Promise<boolean> => {
     return false;
   }
 };
+
+export const deleteToken = async (): Promise<boolean> => {
+  try {
+    await AsyncStorage.removeItem(TOKEN_LOCATION);
+    return true;
+  } catch (e) {
+    console.log(e);
+    return false;
+  }
+};

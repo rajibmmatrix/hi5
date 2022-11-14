@@ -3,17 +3,23 @@ import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import {AuthInput, AuthLogo, Button, Container} from '~components';
 import {COLORS, Icons} from '~constants';
 import {login, RootState, useActions, useSelector} from '~app';
+import {StackScreenProps} from 'types';
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}: StackScreenProps<'Login'>) {
   const dispatch = useActions();
-  const {isLoading} = useSelector((state: RootState) => state.auth);
+  const {isLoading} = useSelector((state: RootState) => state.loading);
   const [mobile, setMobile] = useState('');
 
   const handleSubmit = () => {
     if (mobile.trim().length !== 10) {
       return;
     }
-    dispatch(login({phone_no: mobile}));
+    dispatch(login({phone_no: mobile}))
+      .unwrap()
+      .then(_ => {
+        navigation.navigate('Verify', {mobile});
+      })
+      .catch(err => console.log(err));
   };
 
   return (

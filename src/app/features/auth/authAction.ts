@@ -1,7 +1,5 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import Toast from 'react-native-simple-toast';
-import {ROUTES} from '~constants';
-import {storage, navigation} from '~utils';
 import {api} from '~services';
 import {ILogin, ISignup, IVerify} from 'types';
 
@@ -11,14 +9,8 @@ export const login = createAsyncThunk(
   async (params: ILogin, thunkAPI) => {
     try {
       const {data} = await api.signIn(params);
-      console.log(data);
-      if (!data.success) {
-        Toast.show(data.message);
-        return thunkAPI.rejectWithValue(data.message);
-      }
       Toast.show(data.message);
-      navigation.navigate('Verify', {mobile: params.phone_no} as never);
-      return data.details;
+      return data.data;
     } catch (error: any) {
       Toast.show(error.message);
       return thunkAPI.rejectWithValue(error.message);
@@ -32,21 +24,9 @@ export const verify = createAsyncThunk(
   async (params: IVerify, thunkAPI) => {
     try {
       const {data} = await api.verify(params);
-      console.log({data});
-      if (!data.success) {
-        Toast.show(data.message);
-        return thunkAPI.rejectWithValue(data.message);
-      } else if (data.data.user) {
-        api.setToken(data.token);
-        await storage.setToken(data.token);
-      } else {
-        Toast.show(data.message);
-        navigation.navigate(
-          ROUTES.Signup as never,
-          {mobile: params.phone_no} as never,
-        );
-      }
-      return data.details;
+      await api.setToken(data.data?.accessToken);
+      Toast.show(data.message);
+      return data.data;
     } catch (error: any) {
       Toast.show(error.message);
       return thunkAPI.rejectWithValue(error.message);
@@ -60,16 +40,50 @@ export const signup = createAsyncThunk(
   async (params: ISignup, thunkAPI) => {
     try {
       const {data} = await api.signUp(params);
-      if (!data.success) {
-        Toast.show(data.message);
-        return thunkAPI.rejectWithValue(data.message);
-      }
       Toast.show(data.message);
-      navigation.navigate(ROUTES.Tab as never);
-      return data.details;
+      return data.data;
     } catch (error: any) {
       Toast.show(error.message);
       return thunkAPI.rejectWithValue(error.message);
     }
   },
 );
+
+//For get user info
+export const getUser = createAsyncThunk('auth/getuser', async (_, thunkAPI) => {
+  try {
+    const {data} = await api.getUser();
+    return data.data;
+  } catch (error: any) {
+    Toast.show(error.message);
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
+
+export const checkLogin = createAsyncThunk(
+  'auth/checkLogin',
+  async (_, thunkAPI) => {
+    try {
+      const token = await api.getToken();
+      if (!token) {
+        return {isLogin: false, user: null};
+      }
+      await api.setToken(token);
+      const {data} = await api.getUser();
+      return {isLogin: true, user: data.data};
+    } catch (error: any) {
+      Toast.show(error.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  },
+);
+
+export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
+  try {
+    await api.deleteToken();
+    return false;
+  } catch (error: any) {
+    Toast.show(error.message);
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});

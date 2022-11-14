@@ -1,47 +1,54 @@
 import React from 'react';
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 import {StackScreenProps} from 'types';
-import {AuthInput, AuthLogo, Button, InputOTP} from '~components';
+import {AuthInput, AuthLogo, Button, Container, InputOTP} from '~components';
 import {COLORS, Icons} from '~constants';
-import {useActions, verify} from '~app';
+import {RootState, useActions, useSelector, verify} from '~app';
 
 export default function VerifyScreen({
   route,
   navigation,
 }: StackScreenProps<'Verify'>) {
   const dispatch = useActions();
+  const {isLoading} = useSelector((state: RootState) => state.loading);
+  const {user} = useSelector((state: RootState) => state.auth);
   const {mobile} = route.params!;
   let otp = '';
 
-  console.log({mobile});
-
-  const handelVerify = () => {
-    console.log(otp);
-    dispatch(
-      verify({
-        otp: otp,
-        phone_no: mobile,
-        device_id: '',
-        device_model: '',
-        device_type: '',
-      }),
-    )
+  const handelVerify = async () => {
+    if (otp.length !== 6) {
+      return;
+    }
+    const params = {
+      otp: otp,
+      phone_no: mobile,
+      device_id: await DeviceInfo.getUniqueId(),
+      device_model: await DeviceInfo.getDeviceName(),
+      device_type: DeviceInfo.getSystemName(),
+    };
+    dispatch(verify(params))
       .unwrap()
-      .then(_ => {
-        navigation.reset({
-          index: 0,
-          routes: [{name: 'Tab'}],
-        });
+      .then((data: any) => {
+        if (data?.profile_completed) {
+          navigation.reset({
+            index: 0,
+            routes: [{name: 'Tab'}],
+          });
+        } else {
+          navigation.replace('Signup', {mobile});
+        }
       })
-      .catch(err => console.log('error: ', err));
+      .catch(err => console.log(err));
   };
 
   return (
-    <View style={styles.container}>
+    <Container showSpinner={isLoading}>
       <AuthLogo />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Text style={styles.title}>
           OTP has been sent to you on your{'\n'}mobile number.
+          {user?.otp}
         </Text>
         <View style={styles.body}>
           <AuthInput
@@ -66,15 +73,11 @@ export default function VerifyScreen({
           <Text style={styles.footerLink}>Terms & Conditions</Text>
         </View>
       </ScrollView>
-    </View>
+    </Container>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.Primary_Background,
-  },
   title: {
     fontSize: 14,
     fontWeight: '400',

@@ -41,6 +41,8 @@ const styles = StyleSheet.create({
     width: '12%',
     borderRadius: 15,
     borderWidth: 1.5,
+    alignItems: 'center',
+    justifyContent: 'center',
     borderColor: COLORS.Primary_Link,
     backgroundColor: COLORS.Primary_Background,
   },

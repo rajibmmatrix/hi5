@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
-import {login} from './authAction';
+import {checkLogin, getUser, login, logout, signup, verify} from './authAction';
 
 export interface AuthState {
   isLoggedin: boolean;
@@ -31,23 +31,38 @@ export const authSlice = createSlice({
     },
   },
   extraReducers: builder => {
-    builder.addCase(login.pending, (state: AuthState) => {
-      state.isLoading = true;
-      state.user = null;
+    builder.addCase(login.fulfilled, (state: AuthState, action: any) => {
+      state.isLoading = false;
+      state.user = action.payload;
       state.error = null;
     });
-    builder.addCase(login.fulfilled, (state: AuthState) => {
+    builder.addCase(verify.fulfilled, (state: AuthState, action: any) => {
       state.isLoading = false;
-      state.user = null;
+      state.isLoggedin = true;
+      state.user = action.payload?.profile;
       state.error = null;
     });
-    builder.addCase(login.rejected, (state, action: any) => {
+    builder.addCase(signup.fulfilled, (state: AuthState, action: any) => {
       state.isLoading = false;
-      if (action.payload) {
-        state.error = action.payload?.errorMessage;
-      } else {
-        state.error = action.error?.message as string;
-      }
+      state.user = action.payload;
+      state.error = null;
+    });
+    builder.addCase(getUser.fulfilled, (state: AuthState, action: any) => {
+      state.isLoading = false;
+      state.user = action.payload;
+      state.error = null;
+    });
+    builder.addCase(checkLogin.fulfilled, (state: AuthState, action: any) => {
+      state.isLoading = false;
+      state.isLoggedin = action.payload?.isLogin;
+      state.user = action.payload?.user;
+      state.error = null;
+    });
+    builder.addCase(logout.fulfilled, (state: AuthState, action: any) => {
+      state.isLoading = false;
+      state.isLoggedin = action.payload;
+      state.user = null;
+      state.error = null;
     });
   },
 });
