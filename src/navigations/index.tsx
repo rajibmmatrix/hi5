@@ -7,6 +7,7 @@ import {HeaderBack} from '~common';
 import {
   EditProfileScreen,
   LoginScreen,
+  LogoutScreen,
   ProfileScreen,
   SignupScreen,
   SplashScreen,
@@ -75,6 +76,11 @@ export default function Navigations() {
           <Stack.Screen
             name="EditProfile"
             component={EditProfileScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="Logout"
+            component={LogoutScreen}
             options={{headerShown: false}}
           />
         </Stack.Navigator>

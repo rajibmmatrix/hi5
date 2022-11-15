@@ -7,16 +7,19 @@ import {
   View,
 } from 'react-native';
 import {TabScreenProps} from 'types';
+import {RootState, useSelector} from '~app';
 import {MoreItem} from '~components';
 import {COLORS, Icons} from '~constants';
 
 export default function MoreScreen({navigation}: TabScreenProps<'More'>) {
+  const {user} = useSelector((state: RootState) => state.auth);
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.leftSide}>
           <Icons.ProfilePic width={29} height={29} />
-          <Text style={styles.title}>Milan Chakraborty</Text>
+          <Text style={styles.title}>{user?.name}</Text>
         </View>
         <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
           <Icons.MoreArrowRight width={18} height={18} />
@@ -46,7 +49,11 @@ export default function MoreScreen({navigation}: TabScreenProps<'More'>) {
           Icon={Icons.MoreUser}
           onPress={() => {}}
         />
-        <MoreItem title="Logout" Icon={Icons.Logout} onPress={() => {}} />
+        <MoreItem
+          title="Logout"
+          Icon={Icons.Logout}
+          onPress={() => navigation.navigate('Logout')}
+        />
       </ScrollView>
     </View>
   );

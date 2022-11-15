@@ -13,7 +13,7 @@
       "~assets/*": ["src/assets/*"],
       "~components": ["src/components/index"],
       "~common": ["src/components/common/index"],
-      "~config/*": ["src/config/*"],
+      "~config": ["src/config/index"],
       "~constants": ["src/constants/index"],
       "~navigations": ["src/navigations/index"],
       "~screens": ["src/screens/index"],

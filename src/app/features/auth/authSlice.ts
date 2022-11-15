@@ -38,12 +38,13 @@ export const authSlice = createSlice({
     });
     builder.addCase(verify.fulfilled, (state: AuthState, action: any) => {
       state.isLoading = false;
-      state.isLoggedin = true;
+      state.isLoggedin = action.payload?.profile_completed;
       state.user = action.payload?.profile;
       state.error = null;
     });
     builder.addCase(signup.fulfilled, (state: AuthState, action: any) => {
       state.isLoading = false;
+      state.isLoggedin = true;
       state.user = action.payload;
       state.error = null;
     });

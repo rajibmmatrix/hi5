@@ -1,8 +1,8 @@
 import axios from 'axios';
-import {baseURL} from '~constants';
+import config from '~config';
 
 const API = axios.create({
-  baseURL: baseURL,
+  baseURL: config.baseURL,
   responseType: 'json',
   timeout: 5000,
 });

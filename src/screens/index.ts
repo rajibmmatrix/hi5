@@ -4,6 +4,7 @@ export {default as SplashScreen} from './Splash';
 export {default as LoginScreen} from './auth/Login';
 export {default as SignupScreen} from './auth/Signup';
 export {default as VerifyScreen} from './auth/Verify';
+export {default as LogoutScreen} from './auth/Logout';
 
 //App Screens
 export {default as HomeScreen} from './Home';

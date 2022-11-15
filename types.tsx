@@ -48,6 +48,15 @@ export type TabScreenProps<Screen extends keyof TabParamList> =
     NativeStackScreenProps<StackParamList>
   >;
 
+type MODE = 'Production' | 'Development';
+
+export interface CONFIG {
+  name: string;
+  mode: MODE;
+  version: string;
+  baseURL: string;
+}
+
 export interface ILogin {
   phone_no: string;
 }

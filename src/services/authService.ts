@@ -9,7 +9,7 @@ export const signUp = (params: ISignup) => API.put(URL.signup, params);
 export const verify = (params: IVerify) => API.post(URL.verify, params);
 
 //For Manage Token
-export const setToken = async (params: string) => {
+export const saveToken = async (params: string) => {
   setApiToken(params);
   return await storage.setToken(params);
 };
@@ -20,3 +20,6 @@ export const deleteToken = async () => {
 };
 
 export const getToken = () => storage.getToken();
+export const setToken = async (params: string) => setApiToken(params);
+export const getLogedin = () => storage.getLogin();
+export const setLogedin = (value: boolean) => storage.setLogin(value);

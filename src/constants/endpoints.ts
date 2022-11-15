@@ -1,4 +1,6 @@
-export const baseURL = 'http://3.111.123.169:5082/api/v1';
+import config from '~config';
+
+export const baseURL = config.baseURL;
 
 export const URL = {
   //Auth

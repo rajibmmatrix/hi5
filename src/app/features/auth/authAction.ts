@@ -24,7 +24,10 @@ export const verify = createAsyncThunk(
   async (params: IVerify, thunkAPI) => {
     try {
       const {data} = await api.verify(params);
-      await api.setToken(data.data?.accessToken);
+      await api.saveToken(data.data?.accessToken);
+      if (data.data?.profile_completed) {
+        await api.setLogedin(true);
+      }
       Toast.show(data.message);
       return data.data;
     } catch (error: any) {
@@ -40,6 +43,7 @@ export const signup = createAsyncThunk(
   async (params: ISignup, thunkAPI) => {
     try {
       const {data} = await api.signUp(params);
+      await api.setLogedin(true);
       Toast.show(data.message);
       return data.data;
     } catch (error: any) {
@@ -64,8 +68,9 @@ export const checkLogin = createAsyncThunk(
   'auth/checkLogin',
   async (_, thunkAPI) => {
     try {
+      const isLogedin = await api.getLogedin();
       const token = await api.getToken();
-      if (!token) {
+      if (!token || !isLogedin) {
         return {isLogin: false, user: null};
       }
       await api.setToken(token);
@@ -80,7 +85,8 @@ export const checkLogin = createAsyncThunk(
 
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    await api.deleteToken();
+    api.deleteToken();
+    await api.setLogedin(false);
     return false;
   } catch (error: any) {
     Toast.show(error.message);
