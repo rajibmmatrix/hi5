@@ -16,5 +16,6 @@ export const COLORS = {
   TabBar: '#0C0C0C',
   Primary_Card: '#F1F1F1',
   Secondary_Card: ['#DD1B23', '#7D1315'],
+  Dark_Card: '#18191C',
   Primary_DropDown: '#292D32',
 };

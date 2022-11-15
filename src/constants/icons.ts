@@ -30,3 +30,8 @@ export {default as NewsActive} from '../assets/icons/news_active.svg';
 export {default as TVActive} from '../assets/icons/tv_active.svg';
 export {default as FMActive} from '../assets/icons/radio_active.svg';
 export {default as MoreActive} from '../assets/icons/more_active.svg';
+export {default as EditProfile} from '../assets/icons/edit_profile.svg';
+export {default as ProfileEmail} from '../assets/icons/profile_email.svg';
+export {default as ProfileDOB} from '../assets/icons/profile_dob.svg';
+export {default as ProfileMobile} from '../assets/icons/profile_mobile.svg';
+export {default as ProfileGender} from '../assets/icons/profile_gender.svg';

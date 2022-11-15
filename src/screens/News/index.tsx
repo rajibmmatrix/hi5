@@ -2,8 +2,9 @@ import React, {Fragment} from 'react';
 import {FlatList, Image, ScrollView, StyleSheet, View} from 'react-native';
 import {Header, NewsLive, NewsPaper, TitleAndMore} from '~components';
 import {COLORS, DATA} from '~constants';
+import {TabScreenProps} from 'types';
 
-export default function NewsScreen() {
+export default function NewsScreen({navigation}: TabScreenProps<'News'>) {
   return (
     <View style={styles.container}>
       <Header title="News" />
@@ -26,7 +27,10 @@ export default function NewsScreen() {
             </Fragment>
           ))}
         </View>
-        <TitleAndMore title="Live News Channels" onPress={() => {}} />
+        <TitleAndMore
+          title="Live News Channels"
+          onPress={() => navigation.navigate('TV')}
+        />
         <View style={styles.footer}>
           <FlatList
             horizontal={true}

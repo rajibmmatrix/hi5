@@ -1,9 +1,17 @@
 import React, {useState} from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  Linking,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {AuthInput, AuthLogo, Button, Container} from '~components';
 import {COLORS, Icons} from '~constants';
 import {login, RootState, useActions, useSelector} from '~app';
 import {StackScreenProps} from 'types';
+import config from '~config';
 
 export default function LoginScreen({navigation}: StackScreenProps<'Login'>) {
   const dispatch = useActions();
@@ -20,6 +28,14 @@ export default function LoginScreen({navigation}: StackScreenProps<'Login'>) {
         navigation.navigate('Verify', {mobile});
       })
       .catch(err => console.log(err));
+  };
+
+  const handlePolicy = async () => {
+    const url = config.policyURL;
+    const supported = await Linking.canOpenURL(url);
+    if (supported) {
+      await Linking.openURL(url);
+    }
   };
 
   return (
@@ -66,7 +82,14 @@ export default function LoginScreen({navigation}: StackScreenProps<'Login'>) {
               Is certified GDPR ready, the gold standard in{'\n'}data privacy.
             </Text>
           </View>
-          <Text style={styles.footerLink}>Privacy Policy</Text>
+          <View style={styles.footerBottom}>
+            <TouchableOpacity onPress={handlePolicy}>
+              <Text style={styles.footerLink}>Privacy Policy</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.replace('Tab')}>
+              <Text style={styles.footerLink}>Skip</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </ScrollView>
     </Container>
@@ -113,5 +136,11 @@ const styles = StyleSheet.create({
     color: COLORS.Primary_Link,
     marginVertical: 15,
     marginLeft: 23,
+  },
+  footerBottom: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingRight: 20,
   },
 });

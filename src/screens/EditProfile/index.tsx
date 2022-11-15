@@ -1,15 +1,22 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {BackHeader, Container} from '~components';
 
 export default function EditProfileScreen() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>EditProfile Screen</Text>
-    </View>
+    <Container showSpinner={false}>
+      <BackHeader title="My Profile" />
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
+        <View style={styles.content}>
+          <Text style={styles.title}>Edit Profile Screen</Text>
+        </View>
+      </ScrollView>
+    </Container>
   );
 }
 
 const styles = StyleSheet.create({
   container: {},
+  content: {},
   title: {},
 });

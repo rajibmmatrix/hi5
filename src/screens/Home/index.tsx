@@ -8,15 +8,19 @@ import {
   TitleAndMore,
 } from '~components';
 import {COLORS, DATA, IMAGES} from '~constants';
+import {TabScreenProps} from 'types';
 
-export default function HomeScreen() {
+export default function HomeScreen({navigation}: TabScreenProps<'Home'>) {
   return (
     <View style={styles.container}>
       <Header />
       <ScrollView style={styles.content}>
         <Banner data={DATA.Banners} />
         <View style={styles.body}>
-          <TitleAndMore title="Heigh 5 News" onPress={() => {}} />
+          <TitleAndMore
+            title="Heigh 5 News"
+            onPress={() => navigation.navigate('News')}
+          />
           <FlatList
             data={DATA.NewsData}
             horizontal={true}
@@ -26,7 +30,10 @@ export default function HomeScreen() {
               <HomeTopNews title={item.title} image={IMAGES.HighNews} />
             )}
           />
-          <TitleAndMore title="Popular Web Shows" onPress={() => {}} />
+          <TitleAndMore
+            title="Popular Web Shows"
+            onPress={() => navigation.navigate('TV')}
+          />
           <FlatList
             data={DATA.LiveNews}
             horizontal={true}
@@ -34,7 +41,10 @@ export default function HomeScreen() {
             keyExtractor={(_, index) => index.toString()}
             renderItem={() => <PopularShow image={IMAGES.HighNews} />}
           />
-          <TitleAndMore title="Popular Audio Dramas" onPress={() => {}} />
+          <TitleAndMore
+            title="Popular Audio Dramas"
+            onPress={() => navigation.navigate('FM')}
+          />
           <FlatList
             data={DATA.LiveNews}
             horizontal={true}

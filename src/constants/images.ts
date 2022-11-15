@@ -1,6 +1,7 @@
 export const IMAGES = {
   AuthHeader: require('../assets/images/auth_back.png'),
   Splash: require('../assets/images/Splash.png'),
+  ProfilePic: require('../assets/images/profile_pic.png'),
   UttarerNews: require('../assets/images/uttarer_saradin_news.png'),
   HighNews: require('../assets/images/high_news.png'),
   Banner: require('../assets/images/banner.png'),

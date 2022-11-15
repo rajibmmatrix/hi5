@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   ScrollView,
   StyleSheet,
@@ -8,14 +8,20 @@ import {
 } from 'react-native';
 import {TabScreenProps} from 'types';
 import {RootState, useSelector} from '~app';
-import {MoreItem} from '~components';
+import {Container, MoreItem} from '~components';
 import {COLORS, Icons} from '~constants';
 
 export default function MoreScreen({navigation}: TabScreenProps<'More'>) {
-  const {user} = useSelector((state: RootState) => state.auth);
+  const {user, isLoggedin} = useSelector((state: RootState) => state.auth);
+
+  useEffect(() => {
+    if (!isLoggedin) {
+      navigation.replace('Login');
+    }
+  }, [isLoggedin, navigation]);
 
   return (
-    <View style={styles.container}>
+    <Container showSpinner={false}>
       <View style={styles.header}>
         <View style={styles.leftSide}>
           <Icons.ProfilePic width={29} height={29} />
@@ -55,15 +61,11 @@ export default function MoreScreen({navigation}: TabScreenProps<'More'>) {
           onPress={() => navigation.navigate('Logout')}
         />
       </ScrollView>
-    </View>
+    </Container>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: COLORS.Primary_Background,
-  },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
