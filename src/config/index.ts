@@ -10,6 +10,8 @@ const development: CONFIG = {
   version: '0.0.1',
   baseURL: 'http://3.111.123.169:5082/api/v1',
   policyURL: 'https://google.com',
+  termsURL: 'https://google.com',
+  resendOTP: 20000,
 };
 
 const production: CONFIG = {
@@ -18,6 +20,8 @@ const production: CONFIG = {
   version: '0.0.1',
   baseURL: 'http://3.111.123.169:5082/api/v1',
   policyURL: 'https://google.com',
+  termsURL: 'https://google.com',
+  resendOTP: 200000,
 };
 
 export default __DEV__ ? development : production;

@@ -1,20 +1,42 @@
-import React from 'react';
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import React, {useCallback, useEffect, useState} from 'react';
+import {
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import {StackScreenProps} from 'types';
 import {AuthInput, AuthLogo, Button, Container, InputOTP} from '~components';
 import {COLORS, Icons} from '~constants';
-import {RootState, useActions, useSelector, verify} from '~app';
+import {login, RootState, useActions, useSelector, verify} from '~app';
+import config from '~config';
 
 export default function VerifyScreen({
   route,
   navigation,
 }: StackScreenProps<'Verify'>) {
   const dispatch = useActions();
+  const [showResend, setShowResend] = useState(false);
   const {isLoading} = useSelector((state: RootState) => state.loading);
   const {user} = useSelector((state: RootState) => state.auth);
   const {mobile} = route.params!;
   let otp = '';
+
+  const handelResendOTP = useCallback(() => {
+    setShowResend(false);
+    dispatch(login({phone_no: mobile}))
+      .then(() => {
+        setTimeout(() => setShowResend(true), config.resendOTP);
+      })
+      .catch(() => setShowResend(true));
+  }, [dispatch, mobile]);
+
+  useEffect(() => {
+    const intervel = setTimeout(() => setShowResend(true), config.resendOTP);
+    return () => clearTimeout(intervel);
+  }, []);
 
   const handelVerify = async () => {
     if (otp.length !== 6) {
@@ -64,14 +86,18 @@ export default function VerifyScreen({
               otp = e;
             }}
           />
-          <Text style={styles.timer}>Resend OTP after 60 sec</Text>
+          {showResend ? (
+            <TouchableOpacity onPress={handelResendOTP}>
+              <Text style={styles.timer}>Resend OTP</Text>
+            </TouchableOpacity>
+          ) : null}
           <Button onPress={handelVerify} title="verify" />
         </View>
-        <View style={styles.footer}>
+        {/*<View style={styles.footer}>
           <Icons.Rectangle width={20} />
           <Text style={styles.footerTitle}>I agree to the</Text>
           <Text style={styles.footerLink}>Terms & Conditions</Text>
-        </View>
+          </View>*/}
       </ScrollView>
     </Container>
   );
@@ -96,7 +122,7 @@ const styles = StyleSheet.create({
   timer: {
     fontSize: 12,
     fontWeight: '400',
-    color: COLORS.Other_Text,
+    color: COLORS.Primary_Link,
     textAlign: 'center',
     marginBottom: 35,
   },

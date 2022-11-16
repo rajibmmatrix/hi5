@@ -59,11 +59,11 @@ export default function SignupScreen({
           />
           <Button onPress={handelSubmit} title="sign up" />
         </View>
-        <View style={styles.footer}>
+        {/*<View style={styles.footer}>
           <Icons.Rectangle width={20} />
           <Text style={styles.footerTitle}>I agree to the</Text>
           <Text style={styles.footerLink}>Terms & Conditions</Text>
-        </View>
+        </View>*/}
       </ScrollView>
     </Container>
   );

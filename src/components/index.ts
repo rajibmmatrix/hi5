@@ -12,3 +12,4 @@ export {default as PopularShow} from './PopularShow';
 export {default as MoreItem} from './MoreItem';
 export {default as BackHeader} from './BackHeader';
 export {default as ProfileItem} from './ProfileItem';
+export {default as EditProfileItem} from './EditProfileItem';

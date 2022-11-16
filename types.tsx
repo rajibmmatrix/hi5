@@ -55,7 +55,9 @@ export interface CONFIG {
   mode: MODE;
   version: string;
   baseURL: string;
+  termsURL: string;
   policyURL: string;
+  resendOTP: number;
 }
 
 export interface ILogin {
