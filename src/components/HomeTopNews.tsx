@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {Image, ImageSourcePropType, StyleSheet, Text, View} from 'react-native';
 import {COLORS} from '~constants';
 
@@ -16,7 +16,7 @@ const HomeTopNews: FC<Props> = ({title, image}) => {
   );
 };
 
-export default HomeTopNews;
+export default memo(HomeTopNews);
 
 const styles = StyleSheet.create({
   card: {

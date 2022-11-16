@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {
   ImageBackground,
   ImageSourcePropType,
@@ -38,7 +38,7 @@ const PopularShow: FC<Props> = ({image, length = '00:00', runtime = 0}) => {
   );
 };
 
-export default PopularShow;
+export default memo(PopularShow);
 
 const styles = StyleSheet.create({
   container: {

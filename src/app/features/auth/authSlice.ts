@@ -2,10 +2,23 @@ import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 import {checkLogin, getUser, login, logout, signup, verify} from './authAction';
 
+export interface IUser {
+  name?: string;
+  email?: string;
+  phone_no: string;
+  image?: string;
+  address?: [];
+  date_of_birth?: string;
+  gender?: string;
+  //for login
+  otp?: string;
+  new_user?: boolean;
+}
+
 export interface AuthState {
   isLoggedin: boolean;
   isLoading: boolean;
-  user: any;
+  user: IUser | null;
   error: string | null;
 }
 

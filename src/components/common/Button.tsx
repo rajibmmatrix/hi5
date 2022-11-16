@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {
   StyleSheet,
   Text,
@@ -28,7 +28,7 @@ const Button: FC<Props> = ({title, onPress, style, titleStyle}) => {
   );
 };
 
-export default Button;
+export default memo(Button);
 
 const styles = StyleSheet.create({
   container: {

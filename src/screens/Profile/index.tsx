@@ -1,14 +1,20 @@
 import React from 'react';
 import {Image, ScrollView, StyleSheet, View} from 'react-native';
 import {StackScreenProps} from 'types';
+import {RootState, useSelector} from '~app';
 import {BackHeader, Container, ProfileItem} from '~components';
 import {COLORS, Icons, IMAGES} from '~constants';
 
 export default function ProfileScreen({
   navigation,
 }: StackScreenProps<'Profile'>) {
+  const {
+    auth: {user},
+    loading: {isLoading},
+  } = useSelector((state: RootState) => state);
+
   return (
-    <Container showSpinner={false}>
+    <Container showSpinner={isLoading}>
       <BackHeader
         title="My Profile"
         Icon={Icons.EditProfile}
@@ -17,27 +23,27 @@ export default function ProfileScreen({
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         <View style={styles.content}>
           <Image source={IMAGES.ProfilePic} style={styles.profilePic} />
-          <ProfileItem
-            title="Name"
-            value="Milan Chakraborty"
-            Icon={Icons.MoreUser}
-          />
+          <ProfileItem title="Name" value={user?.name} Icon={Icons.MoreUser} />
           <ProfileItem
             title="Mobile"
-            value="9870 000 333"
+            value={user?.phone_no}
             Icon={Icons.ProfileMobile}
           />
           <ProfileItem
             title="Email"
-            value="milan@gmail.com"
+            value={user?.email}
             Icon={Icons.ProfileEmail}
           />
           <ProfileItem
             title="Date of birth"
-            value="02/09/1990"
+            value={user?.date_of_birth}
             Icon={Icons.ProfileDOB}
           />
-          <ProfileItem title="Gender" value="Male" Icon={Icons.ProfileGender} />
+          <ProfileItem
+            title="Gender"
+            value={user?.gender}
+            Icon={Icons.ProfileGender}
+          />
         </View>
       </ScrollView>
     </Container>

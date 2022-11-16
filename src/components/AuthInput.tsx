@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {StyleSheet, Text, TextInput, View, ViewStyle} from 'react-native';
 import {COLORS} from '~constants';
 
@@ -48,7 +48,7 @@ const AuthInput: FC<Props> = ({
   );
 };
 
-export default AuthInput;
+export default memo(AuthInput);
 
 const styles = StyleSheet.create({
   container: {

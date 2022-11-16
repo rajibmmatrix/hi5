@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, memo, useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {DropDown} from './common';
 
@@ -32,7 +32,7 @@ const Filters: FC = () => {
   );
 };
 
-export default Filters;
+export default memo(Filters);
 
 const styles = StyleSheet.create({
   container: {

@@ -2,6 +2,8 @@ import {CONFIG} from 'types';
 
 const config = {
   name: 'hi5',
+  policyURL: 'https://google.com',
+  termsURL: 'https://google.com',
 };
 
 const development: CONFIG = {
@@ -9,8 +11,6 @@ const development: CONFIG = {
   mode: 'Development',
   version: '0.0.1',
   baseURL: 'http://3.111.123.169:5082/api/v1',
-  policyURL: 'https://google.com',
-  termsURL: 'https://google.com',
   resendOTP: 20000,
 };
 
@@ -19,8 +19,6 @@ const production: CONFIG = {
   mode: 'Production',
   version: '0.0.1',
   baseURL: 'http://3.111.123.169:5082/api/v1',
-  policyURL: 'https://google.com',
-  termsURL: 'https://google.com',
   resendOTP: 200000,
 };
 

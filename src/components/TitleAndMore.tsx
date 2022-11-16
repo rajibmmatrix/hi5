@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {COLORS, Icons} from '~constants';
 
@@ -19,7 +19,7 @@ const TitleAndMore: FC<Props> = ({title, onPress}) => {
   );
 };
 
-export default TitleAndMore;
+export default memo(TitleAndMore);
 
 const styles = StyleSheet.create({
   container: {

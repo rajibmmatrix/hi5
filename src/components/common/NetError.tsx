@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, memo, useEffect, useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 import {COLORS} from '~constants';
@@ -22,7 +22,7 @@ const NetError: FC = () => {
   );
 };
 
-export default NetError;
+export default memo(NetError);
 
 const styles = StyleSheet.create({
   container: {

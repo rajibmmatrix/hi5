@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {Image, StyleSheet, Text} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {Button} from '~common';
@@ -23,7 +23,7 @@ const NewsLive: FC<Props> = ({title, onPress}) => {
   );
 };
 
-export default NewsLive;
+export default memo(NewsLive);
 
 const styles = StyleSheet.create({
   container: {

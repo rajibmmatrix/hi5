@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {SvgProps} from 'react-native-svg';
 import {COLORS} from '~constants';
@@ -20,7 +20,7 @@ const MoreItem: FC<Props> = ({title, Icon, onPress}) => {
   );
 };
 
-export default MoreItem;
+export default memo(MoreItem);
 
 const styles = StyleSheet.create({
   container: {

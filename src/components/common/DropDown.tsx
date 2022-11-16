@@ -1,4 +1,4 @@
-import React, {FC, useState} from 'react';
+import React, {FC, memo, useState} from 'react';
 import {StyleSheet} from 'react-native';
 import DropDownPicker from 'react-native-dropdown-picker';
 import {COLORS, Icons} from '~constants';
@@ -26,11 +26,13 @@ const DropDown: FC<Props> = ({title, data, onChange, value}) => {
       textStyle={styles.desc}
       ArrowUpIconComponent={() => <Icons.ArrowRight />}
       ArrowDownIconComponent={() => <Icons.ArrowRight />}
+      zIndex={3000}
+      zIndexInverse={1000}
     />
   );
 };
 
-export default DropDown;
+export default memo(DropDown);
 
 const styles = StyleSheet.create({
   dropdown: {

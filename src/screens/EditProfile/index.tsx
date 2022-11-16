@@ -7,36 +7,44 @@ import {
   View,
 } from 'react-native';
 import {StackScreenProps} from 'types';
+import {RootState, signup, useActions, useSelector} from '~app';
 import {BackHeader, Button, Container, EditProfileItem} from '~components';
 import {COLORS, Icons, IMAGES} from '~constants';
 
 interface IProfile {
   name: string;
   email: string;
-  mobile: string;
-  dob: string;
+  phone_no: string;
+  date_of_birth: string;
   gender: string;
 }
 
 export default function EditProfileScreen({}: StackScreenProps<'EditProfile'>) {
+  const dispatch = useActions();
+  const {
+    auth: {user},
+    loading: {isLoading},
+  } = useSelector((state: RootState) => state);
   const [profile, setProfile] = useState<IProfile>({
-    name: '',
-    email: '',
-    mobile: '',
-    dob: '',
-    gender: '',
+    name: user?.name ? user.name : '',
+    email: user?.email ? user.email : '',
+    phone_no: user?.phone_no ? user.phone_no : '',
+    date_of_birth: user?.date_of_birth ? user.date_of_birth : '',
+    gender: user?.gender ? user.gender : '',
   });
 
   const handleChange = (name: string, value: string) => {
     setProfile(prev => ({...prev, [name]: value}));
   };
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    dispatch(signup({...profile, full_name: profile.name}));
+  };
 
   const handleProfilePic = () => {};
 
   return (
-    <Container showSpinner={false}>
+    <Container showSpinner={isLoading}>
       <BackHeader title="My Profile" />
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         <View style={styles.content}>
@@ -57,8 +65,8 @@ export default function EditProfileScreen({}: StackScreenProps<'EditProfile'>) {
             title="Mobile"
             placeholder="Enter your mobile"
             Icon={Icons.ProfileMobile}
-            onChangeText={(e: string) => handleChange('mobile', e)}
-            value={profile.mobile}
+            onChangeText={(e: string) => handleChange('phone_no', e)}
+            value={profile.phone_no}
           />
           <EditProfileItem
             title="Email"
@@ -72,13 +80,15 @@ export default function EditProfileScreen({}: StackScreenProps<'EditProfile'>) {
             placeholder="dd/mm/yyyy"
             Icon={Icons.ProfileDOB}
             RightIcon={Icons.Calendar}
-            value={profile.dob}
+            onChangeText={(e: string) => handleChange('date_of_birth', e)}
+            value={profile.date_of_birth}
           />
           <EditProfileItem
             title="Gender"
             placeholder="Male | Female"
             Icon={Icons.ProfileGender}
             RightIcon={Icons.Arrowdown}
+            onChangeText={(e: string) => handleChange('gender', e)}
             value={profile.gender}
           />
           <View style={styles.buttonContainer}>

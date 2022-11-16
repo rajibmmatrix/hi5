@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {ImageBackground, StyleSheet, Text, View, ViewStyle} from 'react-native';
 import {COLORS, Icons, IMAGES} from '~constants';
 
@@ -17,7 +17,7 @@ const AuthLogo: FC<Props> = () => {
   );
 };
 
-export default AuthLogo;
+export default memo(AuthLogo);
 
 const styles = StyleSheet.create({
   container: {

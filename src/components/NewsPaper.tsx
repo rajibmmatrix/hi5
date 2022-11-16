@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
 import {Button} from '~common';
 import {COLORS, IMAGES} from '~constants';
@@ -20,7 +20,7 @@ const NewsPaper: FC<Props> = ({title, description, onPress}) => {
   );
 };
 
-export default NewsPaper;
+export default memo(NewsPaper);
 
 const styles = StyleSheet.create({
   container: {

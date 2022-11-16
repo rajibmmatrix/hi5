@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {COLORS, Icons} from '~constants';
 
@@ -33,7 +33,7 @@ const Header: FC<Props> = ({title, showDot = false}) => {
   );
 };
 
-export default Header;
+export default memo(Header);
 
 const styles = StyleSheet.create({
   header: {

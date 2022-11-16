@@ -7,6 +7,7 @@ export const getUser = () => API.get(URL.getUser);
 export const signIn = (params: ILogin) => API.post(URL.login, params);
 export const signUp = (params: ISignup) => API.put(URL.signup, params);
 export const verify = (params: IVerify) => API.post(URL.verify, params);
+export const imageUpload = (image: any) => API.post(URL.image_upload, image);
 
 //For Manage Token
 export const saveToken = async (params: string) => {

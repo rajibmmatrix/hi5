@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {ImageSlider} from 'react-native-image-slider-banner';
 import {DataType} from 'react-native-image-slider-banner/src/PropsTypes';
@@ -27,7 +27,7 @@ const Banner: FC<Props> = ({data, isLocal = true}) => {
   );
 };
 
-export default Banner;
+export default memo(Banner);
 
 const styles = StyleSheet.create({
   container: {

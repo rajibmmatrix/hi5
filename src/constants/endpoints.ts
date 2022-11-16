@@ -8,4 +8,5 @@ export const URL = {
   login: '/auth/generateOTP',
   signup: '/auth/updateUser',
   verify: '/auth/validateOTP',
+  image_upload: '/image/upload',
 };

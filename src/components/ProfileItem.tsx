@@ -5,7 +5,7 @@ import {COLORS} from '~constants';
 
 interface Props {
   title: string;
-  value: string;
+  value?: string;
   Icon?: FC<SvgProps>;
 }
 
