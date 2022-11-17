@@ -6,11 +6,13 @@ import {COLORS} from '~constants';
 import {HeaderBack} from '~common';
 import {
   EditProfileScreen,
+  FMDetailsScreen,
   LoginScreen,
   LogoutScreen,
   ProfileScreen,
   SignupScreen,
   SplashScreen,
+  TVDetailsScreen,
   VerifyScreen,
 } from '~screens';
 import {StackParamList} from 'types';
@@ -76,6 +78,16 @@ export default function Navigations() {
           <Stack.Screen
             name="EditProfile"
             component={EditProfileScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="TVDetails"
+            component={TVDetailsScreen}
+            options={{headerShown: false}}
+          />
+          <Stack.Screen
+            name="FMDetails"
+            component={FMDetailsScreen}
             options={{headerShown: false}}
           />
           <Stack.Screen

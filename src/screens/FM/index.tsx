@@ -1,9 +1,17 @@
 import React from 'react';
-import {FlatList, Image, StyleSheet, Text, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import {TabScreenProps} from 'types';
 import {Filters, Header} from '~components';
 import {COLORS, DATA} from '~constants';
 
-export default function FMScreen() {
+export default function FMScreen({navigation}: TabScreenProps<'FM'>) {
   return (
     <View style={styles.container}>
       <Header title="FM Radio Channnels" />
@@ -15,10 +23,13 @@ export default function FMScreen() {
           horizontal={false}
           showsVerticalScrollIndicator={false}
           renderItem={({item}) => (
-            <View style={styles.item}>
-              <Image source={item.image} style={styles.image} />
-              <Text style={styles.title}>{item.title}</Text>
-            </View>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('FMDetails', {id: '1'})}>
+              <View style={styles.item}>
+                <Image source={item.image} style={styles.image} />
+                <Text style={styles.title}>{item.title}</Text>
+              </View>
+            </TouchableOpacity>
           )}
           keyExtractor={(_, index) => index.toString()}
         />

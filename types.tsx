@@ -26,6 +26,8 @@ export type StackParamList = {
   //Video: undefined;
   Profile: undefined;
   EditProfile: undefined;
+  TVDetails: {id: string} | undefined;
+  FMDetails: {id: string} | undefined;
 };
 
 //For Tab Navigations

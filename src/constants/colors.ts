@@ -12,6 +12,7 @@ export const COLORS = {
   Primary_Gradient: ['#F29F05', '#F25C05'],
   Primary_Placeholder: '#999999',
   Primary_Border: '#333333',
+  Secondary_Border: '#363B42',
   Other_Text: '#DDDDDD',
   TabBar: '#0C0C0C',
   Primary_Card: '#F1F1F1',

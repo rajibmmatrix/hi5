@@ -1,5 +1,12 @@
 import React, {Fragment} from 'react';
-import {FlatList, Image, ScrollView, StyleSheet, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  ScrollView,
+  StyleSheet,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {Header, NewsLive, NewsPaper, TitleAndMore} from '~components';
 import {COLORS, DATA} from '~constants';
 import {TabScreenProps} from 'types';
@@ -22,7 +29,10 @@ export default function NewsScreen({navigation}: TabScreenProps<'News'>) {
                   onPress={() => {}}
                 />
               ) : (
-                <NewsLive title={item.title} onPress={() => {}} />
+                <NewsLive
+                  title={item.title}
+                  onPress={() => navigation.navigate('TVDetails', {id: '1'})}
+                />
               )}
             </Fragment>
           ))}
@@ -38,9 +48,12 @@ export default function NewsScreen({navigation}: TabScreenProps<'News'>) {
             bounces={false}
             showsHorizontalScrollIndicator={false}
             renderItem={({item}) => (
-              <View style={styles.item}>
-                <Image source={item.image} style={styles.image} />
-              </View>
+              <TouchableOpacity
+                onPress={() => navigation.navigate('TVDetails', {id: '1'})}>
+                <View style={styles.item}>
+                  <Image source={item.image} style={styles.image} />
+                </View>
+              </TouchableOpacity>
             )}
             keyExtractor={(_, index) => index.toString()}
           />
