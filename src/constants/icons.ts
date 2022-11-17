@@ -12,6 +12,7 @@ export {default as Search} from '../assets/icons/search.svg';
 export {default as Ellipse} from '../assets/icons/ellipse.svg';
 export {default as Heart} from '../assets/icons/heart.svg';
 export {default as HeartAdd} from '../assets/icons/heart-add.svg';
+export {default as VideoPlay} from '../assets/icons/video-circle.svg';
 //More Screen
 export {default as BuyPlan} from '../assets/icons/buy_plan.svg';
 export {default as ProfilePic} from '../assets/icons/profile_pic.svg';

@@ -13,6 +13,7 @@ export const IMAGES = {
   India: require('../assets/images/tvs/india.png'),
   NewsNation: require('../assets/images/tvs/news_nation.png'),
   Republic: require('../assets/images/tvs/republic.png'),
+  TVshows: require('../assets/images/tv_shows.png'),
   //FM's
   FM1: require('../assets/images/fms/fm1.png'),
   FM2: require('../assets/images/fms/fm2.png'),

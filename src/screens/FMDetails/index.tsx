@@ -8,9 +8,10 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 import {StackScreenProps} from 'types';
 import {Container, DetailsHeader, TitleAndMore} from '~components';
-import {COLORS, DATA, Icons} from '~constants';
+import {COLORS, DATA, Icons, IMAGES} from '~constants';
 
 export default function FMDetailsScreen({
   navigation,
@@ -22,6 +23,9 @@ export default function FMDetailsScreen({
       <DetailsHeader title="Radio Milan" />
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         {/* Video Player */}
+        <View style={styles.main}>
+          <Image source={IMAGES.FM1} style={styles.logo} />
+        </View>
         <View style={styles.body}>
           <View style={styles.header}>
             <Text style={styles.title}>Radio Milan</Text>
@@ -39,6 +43,15 @@ export default function FMDetailsScreen({
             laoreet metus.
           </Text>
           <View style={styles.divider} />
+          <LinearGradient
+            start={{x: 0, y: 0}}
+            end={{x: 1, y: 0}}
+            colors={COLORS.Primary_Gradient}
+            style={styles.playContent}>
+            <TouchableOpacity>
+              <Icons.VideoPlay height={39} width={39} />
+            </TouchableOpacity>
+          </LinearGradient>
         </View>
         <TitleAndMore
           title="More radio channels like this"
@@ -71,8 +84,24 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
     paddingHorizontal: 20,
   },
+  main: {
+    height: 224,
+    width: '100%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderRadius: 10,
+    backgroundColor: COLORS.Light,
+    borderColor: COLORS.Primary_Border,
+  },
+  logo: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+  },
   body: {
     //flex: 1,
+    marginTop: 24,
   },
   header: {
     flexDirection: 'row',
@@ -94,8 +123,17 @@ const styles = StyleSheet.create({
   divider: {
     height: 1,
     marginTop: 20,
-    marginBottom: 22,
     backgroundColor: COLORS.Secondary_Border,
+  },
+  playContent: {
+    height: 55,
+    width: '100%',
+    borderRadius: 39,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 14,
+    marginVertical: 34,
   },
   footer: {
     marginVertical: 10,

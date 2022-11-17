@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 import {StackScreenProps} from 'types';
-import {Container, DetailsHeader, TitleAndMore} from '~components';
+import {Container, DetailsHeader, TitleAndMore, VideoPlayer} from '~components';
 import {COLORS, DATA, Icons, IMAGES} from '~constants';
 
 export default function TVDetailsScreen({
@@ -22,6 +22,7 @@ export default function TVDetailsScreen({
       <DetailsHeader title="B4U Movies" />
       <ScrollView showsVerticalScrollIndicator={false} style={styles.container}>
         {/* Video Player */}
+        <VideoPlayer />
         <View style={styles.body}>
           <View style={styles.header}>
             <View style={styles.leftSide}>
@@ -97,6 +98,7 @@ const styles = StyleSheet.create({
   },
   body: {
     //flex: 1,
+    marginTop: 24,
   },
   header: {
     width: '100%',
