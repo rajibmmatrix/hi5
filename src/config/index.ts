@@ -10,7 +10,7 @@ const development: CONFIG = {
   ...config,
   mode: 'Development',
   version: '0.0.1',
-  baseURL: 'http://3.111.123.169:5082/api/v1',
+  baseURL: 'http://192.168.1.79:3001/api/v1', //Bapi da PC
   resendOTP: 20000,
 };
 
@@ -18,7 +18,7 @@ const production: CONFIG = {
   ...config,
   mode: 'Production',
   version: '0.0.1',
-  baseURL: 'http://3.111.123.169:5082/api/v1',
+  baseURL: 'http://3.111.123.169:5082/api/v1', // Main server
   resendOTP: 200000,
 };
 

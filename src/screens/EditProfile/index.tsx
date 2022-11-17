@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
-import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {Image, ScrollView, StyleSheet, View} from 'react-native';
 import {StackScreenProps} from 'types';
 import {RootState, signup, useActions, useSelector} from '~app';
-import {BackHeader, Button, Container, EditProfileItem} from '~components';
+import {
+  BackHeader,
+  Button,
+  Container,
+  EditProfileItem,
+  SelectImage,
+} from '~components';
 import {COLORS, Icons, IMAGES} from '~constants';
 
 interface IProfile {
@@ -41,7 +41,9 @@ export default function EditProfileScreen({}: StackScreenProps<'EditProfile'>) {
     dispatch(signup({...profile, full_name: profile.name}));
   };
 
-  const handleProfilePic = () => {};
+  const handleProfilePic = (image: any) => {
+    console.log(image);
+  };
 
   return (
     <Container showSpinner={isLoading}>
@@ -50,9 +52,11 @@ export default function EditProfileScreen({}: StackScreenProps<'EditProfile'>) {
         <View style={styles.content}>
           <View style={styles.profilePicContainer}>
             <Image source={IMAGES.ProfilePic} style={styles.profilePic} />
-            <TouchableOpacity onPress={handleProfilePic} style={styles.editPic}>
+            <SelectImage
+              onChooseImage={handleProfilePic}
+              style={styles.editPic}>
               <Icons.EditProfile width={18} height={18} />
-            </TouchableOpacity>
+            </SelectImage>
           </View>
           <EditProfileItem
             title="Name"

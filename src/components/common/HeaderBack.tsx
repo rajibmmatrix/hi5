@@ -1,4 +1,4 @@
-import React, {FC, memo} from 'react';
+import React, {FC} from 'react';
 import {TouchableOpacity} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {Icons} from '~constants';
@@ -13,4 +13,4 @@ const HeaderBack: FC = () => {
   );
 };
 
-export default memo(HeaderBack);
+export default HeaderBack;
