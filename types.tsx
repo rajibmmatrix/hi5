@@ -60,6 +60,8 @@ export interface CONFIG {
   termsURL: string;
   policyURL: string;
   resendOTP: number;
+  androidURL: string;
+  iosURL: string;
 }
 
 export interface ILogin {

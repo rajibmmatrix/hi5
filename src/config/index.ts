@@ -4,6 +4,8 @@ const config = {
   name: 'hi5',
   policyURL: 'https://google.com',
   termsURL: 'https://google.com',
+  androidURL: 'https://google.com', //app link for android
+  iosURL: 'https://google.com', //app link for android
 };
 
 const development: CONFIG = {

@@ -1,14 +1,17 @@
 import React, {useEffect} from 'react';
 import {
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from 'react-native';
+import Share, {ShareOptions} from 'react-native-share';
 import {TabScreenProps} from 'types';
 import {RootState, useSelector} from '~app';
 import {Container, MoreItem} from '~components';
+import config from '~config';
 import {COLORS, Icons} from '~constants';
 
 export default function MoreScreen({navigation}: TabScreenProps<'More'>) {
@@ -19,6 +22,18 @@ export default function MoreScreen({navigation}: TabScreenProps<'More'>) {
       navigation.replace('Login');
     }
   }, [isLoggedin, navigation]);
+
+  const handleShare = async () => {
+    const options: ShareOptions = {
+      title: config.name,
+      url: Platform.OS === 'ios' ? config.iosURL : config.androidURL,
+    };
+    try {
+      await Share.open(options);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <Container showSpinner={false}>
@@ -53,7 +68,7 @@ export default function MoreScreen({navigation}: TabScreenProps<'More'>) {
         <MoreItem
           title="Tell a friend about this app"
           Icon={Icons.MoreUser}
-          onPress={() => {}}
+          onPress={handleShare}
         />
         <MoreItem
           title="Logout"
